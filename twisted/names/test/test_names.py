@@ -362,7 +362,7 @@ class ServerDNSTestCase(unittest.TestCase):
         )
 
 
-    def testCERT(self):
+    def test_CERT(self):
         """
         L{DNSServerFactory} can serve I{CERT} resource records.
         """

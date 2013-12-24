@@ -1559,7 +1559,7 @@ class Record_NAPTR(tputil.FancyEqMixin, tputil.FancyStrMixin):
 
 def _base64Format(bytes):
     """
-    Base64 encode C{bytes} without any line breaks
+    Base64 encode C{bytes} without any line breaks.
 
     @param bytes: The bytestring to encode.
     @type bytes: L{bytes}
@@ -1604,7 +1604,7 @@ class Record_CERT(tputil.FancyStrMixin, tputil.FancyEqMixin):
     _fmt = '!HHB'
     _fmt_size = struct.calcsize(_fmt)
 
-    def __init__(self, certType=1, keyTag=0, 
+    def __init__(self, certType=1, keyTag=0,
                  algorithm=5, certOrCRL=b'', ttl=None):
         """
         @param certType: an L{int} representing the certificate type
@@ -1614,7 +1614,7 @@ class Record_CERT(tputil.FancyStrMixin, tputil.FancyEqMixin):
         @type certType: L{int}
 
         @param keyTag: Key tag value as described in RRSIG. 
-            The default value (C{0}) is recommende if the 
+            The default value (C{0}) is recommended if the 
             algorithm field is 0. See
             U{https://tools.ietf.org/html/rfc4034#appendix-B}
         @type keyTag: L{int}
@@ -1658,7 +1658,7 @@ class Record_CERT(tputil.FancyStrMixin, tputil.FancyEqMixin):
 
     def __hash__(self):
         """
-        A has allowing this L{Record_CERT} to be used as a L{dict}
+        A hash allowing this L{Record_CERT} to be used as a L{dict}
         key.
 
         @return: A L{hash} og the values of

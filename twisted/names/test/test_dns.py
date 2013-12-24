@@ -1871,7 +1871,7 @@ class EqualityTests(ComparisonTestsMixin, unittest.TestCase):
 
     def test_cert(self):
         """
-        L{dns.Record_CERT} instances compare equal if and only if 
+        L{dns.Record_CERT} instances compare equal if and only if
         they have the same certType, keyTag, algorithm,
         certOrCRL, and ttl.
         """
@@ -1899,7 +1899,6 @@ class EqualityTests(ComparisonTestsMixin, unittest.TestCase):
             dns.Record_CERT(ttl=10),
             dns.Record_CERT(ttl=10),
             dns.Record_CERT(ttl=100))
-
 
 
     def test_unknown(self):
@@ -2673,20 +2672,20 @@ class OPTVariableOptionTests(ComparisonTestsMixin, unittest.TestCase):
         self.assertEqual(o.data, b'foobar')
 
 
+
 class CERT_TEST_DATA(object):
     """
-    Generate byte and instance representations of an
-    L{dns.Record_CERT} where all attributes are set to non-default
-    values.
+    Generate byte and instance representations of an L{dns.Record_CERT} where
+    all attributes are set to non-default values.
 
-    For testing whether attributes have really been read from the byte
-    string during decoding.
+    For testing whether attributes have really been read from the byte string
+    during decoding.
     """
     @classmethod
     def BYTES(cls):
         """
-        @return: L{bytes} representing the encoded CERT record returned
-            by L{OBJECT}.
+        @return: L{bytes} representing the encoded CERT record returned by
+            L{OBJECT}.
         """
         return (
             b'\x00\x02' # certType
@@ -2698,8 +2697,8 @@ class CERT_TEST_DATA(object):
     @classmethod
     def OBJECT(cls):
         """
-        @return: A L{dns.Record_CERT} instance with attributes that
-            match the encoded record returned by L{BYTES}.
+        @return: A L{dns.Record_CERT} instance with attributes that match the
+            encoded record returned by L{BYTES}.
         """
         return dns.Record_CERT(
             certType=2,
@@ -2716,9 +2715,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_certTypeDefaultAttribute(self):
         """
-        L{dns.Record_CERT.certType} is a public L{int} attribute
-        encoding the type of key the record holds. The
-        default value is C{1}.
+        L{dns.Record_CERT.certType} is a public L{int} attribute encoding the
+        type of key the record holds. The default value is C{1}.
 
         http://tools.ietf.org/html/rfc4398#section-2.1
         https://www.iana.org/assignments/cert-rr-types/cert-rr-types.xhtml
@@ -2729,8 +2727,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_certTypeOverride(self):
         """
-        L{dns.Record_CERT.__init__} accepts a C{certType} parameter
-        which overrides the L{dns.Record_CERT.certType} attribute.
+        L{dns.Record_CERT.__init__} accepts a C{certType} parameter which
+        overrides the L{dns.Record_CERT.certType} attribute.
         """
         record = dns.Record_CERT(certType=2)
         self.assertEqual(record.certType, 2)
@@ -2738,9 +2736,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_keyTagDefaultAttribute(self):
         """
-        L{dns.Record_CERT.keyTag} is a public L{int}
-        attribute holding an identifier generated from the certificate. 
-        The default is C{0}.
+        L{dns.Record_CERT.keyTag} is a public L{int} attribute holding an
+        identifier generated from the certificate.  The default is C{0}.
         """
         record = dns.Record_CERT()
         self.assertEqual(record.keyTag, 0)
@@ -2748,9 +2745,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_keyTagOverride(self):
         """
-        L{dns.Record_CERT.__init__} accepts a C{keyTag}
-        parameter which overrides the
-        L{dns.Record_CERT.keyTag} attribute.
+        L{dns.Record_CERT.__init__} accepts a C{keyTag} parameter which
+        overrides the L{dns.Record_CERT.keyTag} attribute.
         """
         record = dns.Record_CERT(keyTag=1)
         self.assertEqual(record.keyTag, 1)
@@ -2758,8 +2754,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_algorithmDefaultAttribute(self):
         """
-        L{dns.Record_CERT.algorithm} is a public L{int} attribute
-        whose default value is 5 (RSA/SHA-1).
+        L{dns.Record_CERT.algorithm} is a public L{int} attribute whose default
+        value is 5 (RSA/SHA-1).
 
         Values are defined in DNSSEC
         https://tools.ietf.org/html/rfc4034#section-2.1.3
@@ -2770,9 +2766,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_algorithmOverride(self):
         """
-        L{dns.Record_CERT.__init__} accepts a C{algorithm}
-        parameter which overrides the
-        L{dns.Record_CERT.algorithm} attribute.
+        L{dns.Record_CERT.__init__} accepts a C{algorithm} parameter which
+        overrides the L{dns.Record_CERT.algorithm} attribute.
         """
         record = dns.Record_CERT(algorithm=255)
         self.assertEqual(record.algorithm, 255)
@@ -2780,8 +2775,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_certOrCRLDefaultAttribute(self):
         """
-        L{dns.Record_CERT.certOrCRL} is a public L{bytes} attribute
-        whose default value is C{b''}.
+        L{dns.Record_CERT.certOrCRL} is a public L{bytes} attribute whose
+        default value is C{b''}.
         """
         record = dns.Record_CERT()
         self.assertEqual(record.certOrCRL, b'')
@@ -2789,9 +2784,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_certOrCRLOverride(self):
         """
-        L{dns.Record_CERT.__init__} accepts a C{certOrCRL}
-        parameter which overrides the
-        L{dns.Record_CERT.certOrCRL} attribute.
+        L{dns.Record_CERT.__init__} accepts a C{certOrCRL} parameter which
+        overrides the L{dns.Record_CERT.certOrCRL} attribute.
         """
         record = dns.Record_CERT(certOrCRL=b'foobar')
         self.assertEqual(record.certOrCRL, b'foobar')
@@ -2799,9 +2793,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_encode(self):
         """
-        L{dns.Record_CERT.encode} packs the header fields and the
-        key and writes them to a file like object passed in as an
-        argument.
+        L{dns.Record_CERT.encode} packs the header fields and the key and writes
+        them to a file like object passed in as an argument.
         """
         record = CERT_TEST_DATA.OBJECT()
         actualBytes = BytesIO()
@@ -2812,9 +2805,9 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_decode(self):
         """
-        L{dns.Record_CERT.decode} unpacks the header fields from a file
-        like object and populates the attributes of an existing
-        L{dns.Record_CERT} instance.
+        L{dns.Record_CERT.decode} unpacks the header fields from a file like
+        object and populates the attributes of an existing L{dns.Record_CERT}
+        instance.
         """
         expectedBytes = CERT_TEST_DATA.BYTES()
         record = dns.Record_CERT()
@@ -2825,9 +2818,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_decodeShorterThanHeader(self):
         """
-        L{dns.Record_CERT.decode} raises L{EOFError} if the provided
-        file object is shorter than the fixed length header parts. ie
-        everything except key.
+	L{dns.Record_CERT.decode} raises L{EOFError} if the provided file object
+        is shorter than the fixed length header parts. ie everything except key.
         """
         record = dns.Record_CERT()
 
@@ -2836,9 +2828,8 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_decodeShorterThanKey(self):
         """
-        L{dns.Record_CERT.decode} raises L{EOFError} if the provided
-        file object is shorter than length provided in the length
-        argument.
+	L{dns.Record_CERT.decode} raises L{EOFError} if the provided file object
+        is shorter than length provided in the length argument.
         """
         expectedBytes = CERT_TEST_DATA.BYTES()
         record = dns.Record_CERT()
