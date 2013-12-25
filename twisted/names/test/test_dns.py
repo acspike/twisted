@@ -2818,7 +2818,7 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_decodeShorterThanHeader(self):
         """
-	L{dns.Record_CERT.decode} raises L{EOFError} if the provided file object
+        L{dns.Record_CERT.decode} raises L{EOFError} if the provided file object
         is shorter than the fixed length header parts. ie everything except key.
         """
         record = dns.Record_CERT()
@@ -2828,7 +2828,7 @@ class CERTRecordTests(unittest.TestCase):
 
     def test_decodeShorterThanKey(self):
         """
-	L{dns.Record_CERT.decode} raises L{EOFError} if the provided file object
+        L{dns.Record_CERT.decode} raises L{EOFError} if the provided file object
         is shorter than length provided in the length argument.
         """
         expectedBytes = CERT_TEST_DATA.BYTES()
